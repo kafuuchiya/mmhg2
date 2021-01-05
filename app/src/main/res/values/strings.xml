@@ -1,0 +1,109 @@
+<resources>
+    <string name="app_name">mmhg2</string>
+    <string name="js_rm_ad">
+        javascript:
+        try{
+            document.querySelector(\"div#rn_ad_native_ai63w\").style.display=\"none\";
+        }catch(err){
+            window.toAndroid.toErr(err);
+        }
+
+        document.querySelectorAll(\"div.sitemaji_banner\").forEach(x => x.style.display=\"none\");
+
+    </string>
+
+    <string name="js_conf">
+        javascript:
+        <!--设置漫画大全页面的显示锁定为日本和最近更新-->
+        document.querySelector(\"body > nav > ul > li:nth-child(3) > a\").href = \"/list/japan/update.html\";
+
+        <!--设置首页的漫画元素与Android交互-->
+        if ( $(\".top-slider-wrap>li\").children().length > 0) {
+
+            $(\".top-slider-wrap>li\").children().forEach(function(x){
+                changeAtag(x);
+            });
+        }
+
+        if ($(\".main-list-wrap>ul>li\").children().length > 0){
+
+            $(\".main-list-wrap>ul>li\").children().forEach(function(x){
+                changeAtag(x);
+            });
+        }
+
+        if ($(\"#detail\").length > 0){
+
+            if($(\"#detail>li>a\").length==20){
+                $(\"#detail>li>a\").forEach(function(x){
+                    changeAtag(x);
+                });
+            }
+
+        <!--监听的目标-->
+        var targetNode = $(\"#detail\")[0];
+        <!--监听的属性，有很多！详细谷歌！-->
+        var options = {childList: true};
+        <!--回调事件-->
+        function callback(mutationsList, observer) {
+                mutationsList.forEach(function(e){
+                    var x = e.addedNodes[0].children[1];
+                    changeAtag(x)
+                });
+            }
+            var mutationObserver = new MutationObserver(callback);
+            mutationObserver.observe(targetNode, options);
+        }
+
+        $(\"#history\").attr(\"onclick\",\"historyEvent()\");
+        function historyEvent(){
+
+            if ($(\"#popHistory>ul a\").length > 0){
+
+                $(\"#popHistory>ul a\").forEach(function(x){
+                    if(x.href.indexOf(\"javascript\") != -1){
+                        return;
+                    }
+                    $(x).attr(\"onclick\",\"closeDiv()\");
+                    changeAtag(x)
+                });
+            }
+        }
+
+        function closeDiv(){
+            document.querySelector(\"#popHistory\").style.display = \"none\";
+            $(\"#history\").removeClass(\"icon-history-on\");
+        }
+
+        function changeAtag(e){
+            var temp = e.href;
+            e.href=\"javascript:toMobile(\\\"\"+temp+\"\\\");\";
+        }
+
+        function toMobile(url){
+            window.toAndroid.toNext(url);
+        }
+    </string>
+
+    <string name="js_comic">
+        javascript:
+        <!--设置漫画页面的跳页按钮点击后滚回顶部-->
+        $(\"#prev\").attr(\"onclick\",\"page2top()\");
+        $(\"#next\").attr(\"onclick\",\"page2top()\");
+        $(\"a[data-action=\'prev\']\").attr(\"onclick\",\"page2top()\");
+        $(\"a[data-action=\'next\']\").attr(\"onclick\",\"page2top()\");
+        <!--        document.querySelector(\"a[data-action=\'prev\']\").onclick = page2top();-->
+        <!--        document.querySelector(\"a[data-action=\'next\']\").onclick = page2top();-->
+
+        function page2top(){
+            document.body.scrollTop = document.documentElement.scrollTop = 0;
+        }
+    </string>
+
+    <string name="js_rm_topAndBottom">
+        document.querySelector(\"header\").style.display =\"none\";
+        document.querySelector(\"nav\").style.display =\"none\";
+        document.querySelector(\"footer\").style.display =\"none\";
+    </string>
+
+</resources>
