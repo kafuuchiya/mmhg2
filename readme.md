@@ -1,4 +1,4 @@
-#  mmg2
+#  mmhg2
 基於學習與研究的目的，使用UIWebView包裝的一個簡單的Hyper App (Android)。
 
 以下網站作為主要目標：
@@ -31,11 +31,19 @@ https://m.manhuagui.com/
 
 **Language**: Java, JavaScript, CSS, HTML, jQuery
 
-* 新知識
+* 重點
 
     * Android及Js之間的交互，例如Js呼喚Android的method
 
     * 使用Mutation Observer API 用來監視DOM變動。DOM的任何變動，例如節點的增刪，這個 API 都可以得到通知。用於網頁數據更新以及顯示完成時，獲得callback，再進行下一步操作。
+
+## 免責聲明
+
+當你下載或使用本項目，將默許
+本項目僅供交流和學習使用，請勿用此從事 違法/商業盈利等，開發者團隊擁有本項目的最終解釋權
+
+## 下載
+[Download apk](https://github.com/kafuuchiya/mmhg2/raw/master/app/release/mmhg2.apk)
 
 ## 可能會有
 

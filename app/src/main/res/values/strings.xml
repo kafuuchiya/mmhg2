@@ -1,88 +1,131 @@
 <resources>
     <string name="app_name">mmhg2</string>
     <string name="js_rm_ad">
-        javascript:
+        let rm_a = document.querySelectorAll(\"div#rn_ad_native_ai63w\"),
+            rm_b = document.querySelectorAll(\"body > div.book-detail > iframe\"),
+            rm_c = document.querySelectorAll(\"body > iframe\"),
+            rm_d = document.querySelectorAll(\"div.sitemaji_banner\");
 
-        var a = document.querySelectorAll(\"div#rn_ad_native_ai63w\"),
-            b = document.querySelectorAll(\"body > div.book-detail > iframe\"),
-            c = document.querySelectorAll(\"div.sitemaji_banner\");
-        if (a.length>0){
-            a[0].style.display=\"none\";
+        if (rm_a.length>0){
+            rm_a[0].style.display=\"none\";
+        }else{
+            console.log(\"mmhg2-log: rm_a\");
         }
-        if (b.length>0){
-            b[0].style.display=\"none\";
+
+        if (rm_b.length>0){
+            rm_b[0].style.display=\"none\";
+        }else{
+            console.log(\"mmhg2-log: rm_b\");
         }
-        if (c.length>0){
-            c.forEach(x => x.style.display=\"none\")
+
+        if (rm_c.length>0){
+            rm_c[0].style.display=\"none\";
+        }else{
+            console.log(\"mmhg2-log: rm_c\");
+        }
+
+        if (rm_d.length>0){
+            rm_d.forEach(x => x.style.display=\"none\")
+        }else{
+            console.log(\"mmhg2-log: rm_d\");
         }
 
     </string>
 
     <string name="js_conf">
-        javascript:
+        let con_a = document.querySelectorAll(\"body > nav > ul > li:nth-child(3) > a\");
+            con_b = $(\".top-slider-wrap>li\").children(),
+            con_c = $(\".main-list-wrap>ul>li\").children(),
+            con_d = $(\"#detail\"),
+            con_e = $(\"#detail>li>a\"),
+            con_f = $(\"#history\");
+
         <!--设置漫画大全页面的显示锁定为日本和最近更新-->
-        document.querySelector(\"body > nav > ul > li:nth-child(3) > a\").href = \"/list/japan/update.html\";
+        if ( con_a.length > 0 ) {
+            con_a[0].href = \"/list/japan/update.html\";
+        }else{
+            console.log(\"mmhg2-log: con_a\");
+        }
 
         <!--设置首页的漫画元素与Android交互-->
-        if ( $(\".top-slider-wrap>li\").children().length > 0) {
-
-            $(\".top-slider-wrap>li\").children().forEach(function(x){
+        if ( con_b.length > 0 ) {
+            con_b.forEach(function(x){
                 changeAtag(x);
             });
+        }else{
+            console.log(\"mmhg2-log: con_b\");
         }
 
-        if ($(\".main-list-wrap>ul>li\").children().length > 0){
-
-            $(\".main-list-wrap>ul>li\").children().forEach(function(x){
+        if ( con_c.length > 0 ) {
+            con_c.forEach(function(x){
                 changeAtag(x);
             });
+        }else{
+            console.log(\"mmhg2-log: con_c\");
         }
 
-        if ($(\"#detail\").length > 0){
+        if ( con_d.length > 0 ) {
 
-            if($(\"#detail>li>a\").length==20){
-                $(\"#detail>li>a\").forEach(function(x){
+            <!--对列表默认显示的20个元素进行修改-->
+            if( con_e.length==20 ) {
+                con_e.forEach(function(x){
                     changeAtag(x);
                 });
+            }else{
+                console.log(\"mmhg2-log: con_e\");
             }
 
-        <!--监听的目标-->
-        var targetNode = $(\"#detail\")[0];
-        <!--监听的属性，有很多！详细谷歌！-->
-        var options = {childList: true};
-        <!--回调事件-->
-        function callback(mutationsList, observer) {
-                mutationsList.forEach(function(e){
-                    var x = e.addedNodes[0].children[1];
-                    changeAtag(x)
-                });
+            <!--对列表新增元素进行修改-->
+            <!--监听的目标-->
+            var targetNode = con_d[0];
+            <!--监听的属性，有很多！详细谷歌！-->
+            var options = {childList: true};
+            <!--回调事件-->
+            function callback(mutationsList, observer) {
+                        mutationsList.forEach(function(e){
+                            var x = e.addedNodes[0].children[1];
+                            changeAtag(x)
+                        });
             }
             var mutationObserver = new MutationObserver(callback);
             mutationObserver.observe(targetNode, options);
+        }else{
+            console.log(\"mmhg2-log: con_d\");
         }
 
-        $(\"#history\").attr(\"onclick\",\"historyEvent()\");
+        if (con_f.length>0){
+            con_f.attr(\"onclick\",\"historyEvent()\");
+        }else{
+            console.log(\"mmhg2-log: con_f\");
+        }
+
         function historyEvent(){
+            let a = $(\"#popHistory>ul a\");
 
-            if ($(\"#popHistory>ul a\").length > 0){
-
-                $(\"#popHistory>ul a\").forEach(function(x){
+            if (a.length > 0){
+                a.forEach(function(x){
                     if(x.href.indexOf(\"javascript\") != -1){
                         return;
                     }
                     $(x).attr(\"onclick\",\"closeDiv()\");
                     changeAtag(x)
                 });
+            }else{
+                console.log(\"mmhg2-log: historyEvent()\");
             }
         }
 
         function closeDiv(){
-            document.querySelector(\"#popHistory\").style.display = \"none\";
-            $(\"#history\").removeClass(\"icon-history-on\");
+            let a = document.querySelectorAll(\"#popHistory\");
+            if (a.length > 0){
+                a[0].style.display = \"none\";
+                con_f.removeClass(\"icon-history-on\");
+            }
+
         }
 
         function changeAtag(e){
-            var temp = e.href;
+            let temp = e.href;
             e.href=\"javascript:toMobile(\\\"\"+temp+\"\\\");\";
         }
 
@@ -92,7 +135,7 @@
     </string>
 
     <string name="js_comic">
-        javascript:
+
         <!--设置漫画页面的跳页按钮点击后滚回顶部-->
         $(\"#prev\").attr(\"onclick\",\"page2top()\");
         $(\"#next\").attr(\"onclick\",\"page2top()\");
@@ -107,9 +150,28 @@
     </string>
 
     <string name="js_rm_topAndBottom">
-        document.querySelector(\"header\").style.display =\"none\";
-        document.querySelector(\"nav\").style.display =\"none\";
-        document.querySelector(\"footer\").style.display =\"none\";
+        let rmtb_a = document.querySelectorAll(\"header\"),
+            rmtb_b = document.querySelectorAll(\"nav\"),
+            rmtb_c = document.querySelectorAll(\"footer\");
+
+        if (rmtb_a.length>0){
+            rmtb_a[0].style.display =\"none\";
+        }else{
+            console.log(\"mmhg2-log: rmtb_a\");
+        }
+
+        if (rmtb_b.length>0){
+            rmtb_b[0].style.display =\"none\";
+        }else{
+            console.log(\"mmhg2-log: rmtb_b\");
+        }
+
+        if (rmtb_c.length>0){
+            rmtb_c[0].style.display =\"none\";
+        }else{
+            console.log(\"mmhg2-log: rmtb_c\");
+        }
+
     </string>
 
 </resources>
