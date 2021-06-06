@@ -12,14 +12,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.webkit.JavascriptInterface;
 import android.webkit.JsResult;
-import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 @SuppressLint("SetJavaScriptEnabled")
 public class ComicActivity extends AppCompatActivity {
@@ -34,8 +31,8 @@ public class ComicActivity extends AppCompatActivity {
 
         String comicUrl = this.getIntent().getStringExtra("url");
         Js2Android jsa = new Js2Android(this);
-        progressBar = (ProgressBar) findViewById(R.id.loading);
-        comicWebView = (WebView) findViewById(R.id.comic_wv);
+        progressBar = findViewById(R.id.loading);
+        comicWebView = findViewById(R.id.comic_wv);
 
         comicWebView.loadUrl(comicUrl);
 
