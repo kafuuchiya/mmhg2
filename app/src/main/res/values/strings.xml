@@ -5,6 +5,7 @@
             rm_b = document.querySelectorAll(\"body > div.book-detail > iframe\"),
             rm_c = document.querySelectorAll(\"body > iframe\"),
             rm_d = document.querySelectorAll(\"div.sitemaji_banner\");
+            rm_e = document.querySelectorAll(\"#compass-fit-4299839\");
 
         if (rm_a.length>0){
             rm_a[0].style.display=\"none\";
@@ -19,7 +20,7 @@
         }
 
         if (rm_c.length>0){
-            rm_c[0].style.display=\"none\";
+            rm_c.forEach(x => x.style.display=\"none\")
         }else{
             console.log(\"mmhg2-log: rm_c\");
         }
@@ -28,6 +29,12 @@
             rm_d.forEach(x => x.style.display=\"none\")
         }else{
             console.log(\"mmhg2-log: rm_d\");
+        }
+
+        if (rm_e.length>0){
+            rm_e.forEach(x => x.style.display=\"none\")
+        }else{
+            console.log(\"mmhg2-log: rm_e\");
         }
 
     </string>

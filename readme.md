@@ -45,6 +45,10 @@ https://m.manhuagui.com/
 ## 下載
 [Download apk](https://github.com/kafuuchiya/mmhg2/raw/master/app/release/mmhg2.apk)
 
+## 已測試版本
+* Android 10 (API 29) : 實體機 + 虛擬機
+* Android 11 (API 30) : 虛擬機
+
 ## 可能會有
 
 * 漫畫列表頁面“to top”及“refresh”按鈕

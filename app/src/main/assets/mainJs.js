@@ -3,6 +3,7 @@ function toErrMsg(err){
 }
 
 function toMobile(url){
+    toErrMsg(url)
     window.toAndroid.toNext(url);
 }
 
@@ -41,6 +42,7 @@ function js_rm_ad(){
         rm_b = document.querySelectorAll("body > div.book-detail > iframe"),
         rm_c = document.querySelectorAll("body > iframe"),
         rm_d = document.querySelectorAll("div.sitemaji_banner");
+        rm_e = document.querySelectorAll("#compass-fit-4299839");
 
     if (rm_a.length>0){
         rm_a[0].style.display="none";
@@ -50,12 +52,13 @@ function js_rm_ad(){
 
     if (rm_b.length>0){
         rm_b[0].style.display="none";
+
     }else{
         toErrMsg("rm_b");
     }
 
     if (rm_c.length>0){
-        rm_c[0].style.display="none";
+        rm_c.forEach(x => x.style.display="none")
     }else{
         toErrMsg("rm_c");
     }
@@ -64,6 +67,12 @@ function js_rm_ad(){
         rm_d.forEach(x => x.style.display="none")
     }else{
         toErrMsg("rm_d");
+    }
+
+    if (rm_e.length>0){
+        rm_e.forEach(x => x.style.display="none")
+    }else{
+        toErrMsg("rm_e");
     }
 }
 
